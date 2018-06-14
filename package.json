@@ -9,8 +9,27 @@
     "security-check": "nsp check",
     "open:src": "babel-node buildScripts/srcServer.js",
     "localtunnel": "lt --port 3000",
-    "share": "npm-run-all --parallel open:src localtunnel"
-
+    "share": "npm-run-all --parallel open:src localtunnel",
+    "lint": "esw webpack.config.dev.js src --color",
+    "lint:watch": "npm run lint -- --watch"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 7,
+      "sourceType": "module"
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true
+    },
+    "rules": {}
   },
   "repository": {
     "type": "git",
@@ -35,7 +54,7 @@
     "css-loader": "0.25.0",
     "eslint": "3.8.1",
     "eslint-plugin-import": "2.0.1",
-    "eslint-watch": "2.1.14",
+    "eslint-watch": "^2.1.13",
     "express": "4.14.0",
     "extract-text-webpack-plugin": "1.0.1",
     "html-webpack-plugin": "2.22.0",
