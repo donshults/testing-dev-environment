@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel security-check open:src",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
     "security-check": "nsp check",
     "open:src": "babel-node buildScripts/srcServer.js",
     "localtunnel": "lt --port 3000",
     "share": "npm-run-all --parallel open:src localtunnel",
     "lint": "esw webpack.config.dev.js src --color",
-    "lint:watch": "npm run lint -- --watch"
+    "lint:watch": "npm run lint -- --watch",
+    "test": "mocha --report progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
   },
   "eslintConfig": {
     "root": true,
